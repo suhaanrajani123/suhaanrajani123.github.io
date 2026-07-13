@@ -4,12 +4,500 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Suhaan Rajani | Contact</title>
+    <title>Suhaan Rajani | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6c5ce7 0%, #00d4ff 50%, #6c5ce7 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-scrolled {
+            padding-top: 12px !important;
+            padding-bottom: 12px !important;
+            background: rgba(10, 10, 15, 0.9) !important;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        #bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        #root {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 
 <body>
+    <video id="bg-video" autoplay loop muted playsinline preload="auto">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
+
+    <script>
+        // Force video playback — handles browser autoplay restrictions
+        (function() {
+            const video = document.getElementById('bg-video');
+            function tryPlay() {
+                if (video.paused) {
+                    video.play().catch(function() {});
+                }
+            }
+            video.addEventListener('canplay', tryPlay);
+            document.addEventListener('DOMContentLoaded', tryPlay);
+            window.addEventListener('load', tryPlay);
+            // Fallback: play on first user interaction
+            ['click', 'scroll', 'keydown', 'touchstart'].forEach(function(evt) {
+                document.addEventListener(evt, function handler() {
+                    tryPlay();
+                    document.removeEventListener(evt, handler);
+                }, { once: true });
+            });
+        })();
+    </script>
+
     <div id="root"></div>
-    <script src="index.js"></script>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const ArrowUpRight = (props) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
+                <path d="M7 7h10v10" /><path d="M7 17 17 7" />
+            </svg>
+        );
+        const MenuIcon = (props) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
+                <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="18" y2="18" />
+            </svg>
+        );
+        const XIcon = (props) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
+                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+            </svg>
+        );
+
+        const navLinks = [
+            { label: 'Home', href: '#home' },
+            { label: 'About', href: '#about' },
+            { label: 'Experience', href: '#experience' },
+            { label: 'Education', href: '#education' },
+            { label: 'Projects', href: '#projects' },
+            { label: 'Skills', href: '#skills' },
+            { label: 'Contact', href: '#contact', hasArrow: true },
+        ];
+
+        const experience = [
+            {
+                date: 'June 2026 — July 2026',
+                title: 'Research Assistant',
+                org: 'New Jersey Institute of Technology, Newark, NJ',
+                bullets: [
+                    'Conducted literature reviews on the role of artificial intelligence in spiritual, religious, and human interactions by analyzing academic research.',
+                    'Summarized and synthesized scholarly articles to support an interdisciplinary research project.',
+                    'Developed strong competencies in research methodology, critical thinking, and academic writing through evidence-based analysis.',
+                ],
+            },
+            {
+                date: 'May 2025 — August 2025',
+                title: 'Volunteer',
+                org: 'Urban Garden Hostel, Lisbon, Portugal',
+                bullets: [
+                    'Assisted the front desk team by welcoming guests, responding to inquiries, and providing information regarding hostel services and local attractions.',
+                    'Supported daily hostel operations, including organization of common areas, preparation of rooms for new arrivals, and maintenance of a clean, welcoming environment.',
+                    'Collaborated with staff to facilitate guest check-ins and check-outs, ensuring smooth daily operations.',
+                ],
+            },
+        ];
+
+        const education = [
+            {
+                date: 'Aug 2025 — May 2029',
+                title: 'Bachelor of Science in Computer Science',
+                org: 'New Jersey Institute of Technology, Newark, NJ',
+                bullets: [
+                    'Pursuing a B.S. in Computer Science with a strong focus on software development, data analysis, and modern web technologies.',
+                    'Actively engaged in research, web development, and design projects spanning multiple domains.',
+                ],
+            },
+            {
+                date: '2023 — 2025',
+                title: 'Higher Secondary Education — PCM Curriculum',
+                org: 'Delhi Public School Nacharam, Hyderabad, India',
+                bullets: [
+                    'Completed higher secondary education under the PCM (Physics, Chemistry, Mathematics) curriculum, establishing a strong analytical and quantitative foundation.',
+                    'Developed strong problem-solving and logical reasoning skills through rigorous coursework in mathematics and the sciences.',
+                    'Engaged in self-directed programming and extracurricular activities that cultivated a sustained interest in computer science.',
+                ],
+                coursework: ['Informatics Practices', 'Python Basics', 'MySQL Fundamentals', 'Data Handling'],
+                description: 'Informatics Practices was a core subject that introduced me to the fundamentals of computer science, including basic Python programming and MySQL database management. The coursework provided my first formal exposure to writing code, working with data structures, and querying relational databases, which laid the groundwork for my subsequent studies in computer science.',
+            },
+        ];
+
+        const projects = [
+            {
+                icon: '📈',
+                title: 'TradePath — Stock Market Simulator',
+                description: 'An interactive stock market simulator that enables users to trade equities with virtual capital using real-time market data. The application includes comprehensive portfolio management tools and real-time profit and loss calculations.',
+                tags: ['React', 'JavaScript', 'yfinance API', 'Recharts', 'Vercel'],
+                links: [
+                    { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/trade' },
+                ],
+            },
+            {
+                icon: '🌐',
+                title: 'Urban Garden Hostel Website',
+                description: 'A responsive hospitality website developed using modern web technologies, with a focus on performance, accessibility, and mobile compatibility. The site presents hostel services and amenities to potential guests.',
+                tags: ['React', 'HTML/CSS/JS', 'WordPress'],
+                links: [
+                    { label: 'Live Demo', href: 'https://www.urbangardenhostel.com/' },
+                ],
+            },
+            {
+                icon: '🛒',
+                title: 'SuperMarket Billing Software',
+                description: 'A full-featured retail billing system integrating SQL database management, transaction processing, and inventory tracking. Database indexing was implemented to optimize query performance.',
+                tags: ['Python', 'Pandas', 'SQL'],
+                links: [
+                ],
+            },
+        ];
+
+        const skills = [
+            { category: 'Programming Languages', items: ['Java', 'Python', 'C/C++', 'SQL (Postgres)', 'JavaScript', 'HTML/CSS', 'R'] },
+            { category: 'Frameworks & Libraries', items: ['React', 'Node.js', 'Flask', 'FastAPI', 'WordPress', 'Pandas', 'NumPy', 'Matplotlib'] },
+            { category: 'Developer Tools', items: ['GitHub', 'Docker', 'TravisCI', 'Google Cloud', 'Supabase', 'VS Code', 'PyCharm', 'Eclipse'] },
+            { category: 'Design & Productivity', items: ['Figma', 'Adobe Illustrator', 'MS Word'] },
+        ];
+
+        function App() {
+            const [open, setOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const onScroll = () => setScrolled(window.scrollY > 30);
+                window.addEventListener('scroll', onScroll);
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) entry.target.classList.add('visible');
+                    });
+                });
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+                }, 100);
+
+                return () => window.removeEventListener('scroll', onScroll);
+            }, []);
+
+            return (
+                <div className="text-white font-sans">
+                    {/* NAV */}
+                    <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/5 transition-all duration-300 ${scrolled ? 'nav-scrolled' : 'py-6'}`}>
+                        <div className="mx-auto max-w-7xl px-6 md:px-8">
+                            <div className="flex items-center justify-between">
+                                <a href="#home" className="flex items-center gap-3">
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white">
+                                        <span className="h-3 w-3 rounded-full bg-white"></span>
+                                    </span>
+                                    <span className="text-base font-semibold">Suhaan Rajani</span>
+                                </a>
+
+                                <ul className="hidden items-center gap-1 rounded-full border border-gray-700 bg-black/30 px-2 py-1.5 backdrop-blur-md lg:flex">
+                                    {navLinks.map((l) => (
+                                        <li key={l.label}>
+                                            <a href={l.href} className="flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white">
+                                                {l.label}
+                                                {l.hasArrow && <ArrowUpRight className="h-3.5 w-3.5" />}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <button onClick={() => setOpen(!open)} className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-700 text-white/80 transition hover:text-white lg:hidden" aria-label="Toggle menu">
+                                    {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+                                </button>
+                            </div>
+
+                            {open && (
+                                <ul className="mt-4 flex flex-col gap-1 rounded-2xl border border-gray-700 bg-black/80 p-3 backdrop-blur-md lg:hidden">
+                                    {navLinks.map((l) => (
+                                        <li key={l.label}>
+                                            <a href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-4 py-2.5 text-sm text-white/80 transition hover:bg-white/5 hover:text-white">
+                                                {l.label}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
+                    </nav>
+
+                    {/* HERO + ABOUT */}
+                    <section id="home" className="relative min-h-screen w-full flex flex-col pt-28 pb-20 px-6 md:px-8">
+                        <div className="relative z-10 flex flex-1 flex-col max-w-7xl mx-auto w-full justify-center">
+                            <div className="text-center">
+                                <h1 className="font-semibold leading-[0.85] tracking-tighter mb-8">
+                                    <span className="block text-5xl font-medium text-white sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl">
+                                        Hi, I am
+                                    </span>
+                                    <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl mt-2 gradient-text">
+                                        Suhaan Rajani.
+                                    </span>
+                                </h1>
+
+                                <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto mb-8">
+                                    Building practical, efficient software solutions through full-stack development, data systems, and academic research.
+                                </p>
+
+                                <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+                                    <a href="#projects" className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20 md:px-8 md:py-4 md:text-base">
+                                        View My Work
+                                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    </a>
+                                    <a href="#contact" className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/50 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-black/70 md:px-8 md:py-4 md:text-base">
+                                        Get in Touch
+                                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="about" className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto w-full">
+                                <div className="lg:col-span-2 reveal">
+                                    <p className="text-white/80 leading-relaxed mb-4">I am <strong className="text-white">Suhaan Rajani</strong>, a Computer Science student at the <strong className="text-white">New Jersey Institute of Technology</strong> with a strong interest in building practical and efficient software solutions.</p>
+                                    <p className="text-white/80 leading-relaxed mb-4">My academic and professional experience spans <strong className="text-white">full-stack web development</strong>, <strong className="text-white">database management</strong>, and <strong className="text-white">academic research</strong>. I have developed a solid technical foundation in programming languages such as <strong className="text-white">Java, Python, SQL, and JavaScript</strong>, and I am proficient in working with modern frameworks including <strong className="text-white">React, Node.js, and Flask</strong>.</p>
+                                    <p className="text-white/80 leading-relaxed mb-4">Most recently, I developed <strong className="text-white">TradePath</strong>, a stock market simulator that integrates real-time financial data to enable virtual trading. I have also engineered a <strong className="text-white">supermarket billing system</strong> using Python and SQL to streamline inventory tracking and transaction processing.</p>
+                                    <p className="text-white/80 leading-relaxed">My experience volunteering at an international hostel in Lisbon has further strengthened my skills in <strong className="text-white">communication, organization, and customer service</strong>. I am continually motivated to expand my technical expertise and collaborate on projects that create meaningful impact.</p>
+                                </div>
+
+                                <div className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-6 self-start reveal">
+                                    <div className="space-y-3">
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">Name</span><span className="text-white text-sm font-medium">Suhaan Rajani</span></div>
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">Location</span><span className="text-white text-sm font-medium">Newark, NJ</span></div>
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">University</span><span className="text-white text-sm font-medium">NJIT</span></div>
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">Degree</span><span className="text-white text-sm font-medium">B.S. CS</span></div>
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">Email</span><span className="text-white text-sm font-medium">suhaanrajani276@gmail.com</span></div>
+                                        <div className="flex justify-between py-2 border-b border-white/5"><span className="text-white/50 text-sm">Phone</span><span className="text-white text-sm font-medium">(706) 490-1201</span></div>
+                                        <div className="flex justify-between py-2"><span className="text-white/50 text-sm">Status</span><span className="text-green-400 text-sm font-medium">Available</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* EXPERIENCE */}
+                    <section id="experience" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Professional <span className="gradient-text">Experience</span></h2>
+                            <p className="text-white/70 max-w-2xl">Research and professional work experience.</p>
+                        </div>
+                        <div className="space-y-6">
+                            {experience.map((item, i) => (
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:translate-x-2 reveal">
+                                    <p className="font-mono text-sm text-purple-400 mb-3">{item.date}</p>
+                                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
+                                    <p className="text-cyan-400 mb-6">{item.org}</p>
+                                    <ul className="space-y-3">
+                                        {item.bullets.map((b, j) => (
+                                            <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
+                                                <span className="absolute left-0 text-purple-400">▹</span>
+                                                {b}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* EDUCATION */}
+                    <section id="education" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Academic <span className="gradient-text">Background</span></h2>
+                            <p className="text-white/70 max-w-2xl">My academic journey and relevant coursework.</p>
+                        </div>
+                        <div className="space-y-6">
+                            {education.map((item, i) => (
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:translate-x-2 reveal">
+                                    <p className="font-mono text-sm text-purple-400 mb-3">{item.date}</p>
+                                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
+                                    <p className="text-cyan-400 mb-6">{item.org}</p>
+                                    <ul className="space-y-3 mb-6">
+                                        {item.bullets.map((b, j) => (
+                                            <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
+                                                <span className="absolute left-0 text-purple-400">▹</span>
+                                                {b}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    {item.coursework && (
+                                        <div className="pt-6 border-t border-white/5">
+                                            <p className="font-mono text-xs text-white/50 uppercase tracking-widest mb-3">Relevant Coursework</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {item.coursework.map((c, j) => (
+                                                    <span key={j} className="px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono">{c}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                    {item.description && (
+                                        <p className="text-white/80 leading-relaxed mt-6 pt-6 border-t border-white/5">{item.description}</p>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* PROJECTS */}
+                    <section id="projects" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Selected <span className="gradient-text">Projects</span></h2>
+                            <p className="text-white/70 max-w-2xl">A selection of academic and personal projects.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {projects.map((p, i) => (
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:-translate-y-2 flex flex-col reveal">
+                                    <div className="text-4xl mb-6">{p.icon}</div>
+                                    <h3 className="text-xl font-semibold text-white mb-4">{p.title}</h3>
+                                    <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">{p.description}</p>
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {p.tags.map((t, j) => (
+                                            <span key={j} className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono">{t}</span>
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-wrap gap-4">
+                                        {p.links.map((l, j) => (
+                                            <a key={j} href={l.href} target="_blank" rel="noopener" className="text-cyan-400 text-sm font-medium hover:text-cyan-300 transition flex items-center gap-1">
+                                                {l.label} →
+                                            </a>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* SKILLS */}
+                    <section id="skills" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
+                        <div className="mb-16">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Technical <span className="gradient-text">Proficiencies</span></h2>
+                            <p className="text-white/70 max-w-2xl">Programming languages, frameworks, and tools I have worked with.</p>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {skills.map((s, i) => (
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 reveal">
+                                    <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-3">
+                                        <span className="w-2 h-2 rounded-full bg-purple-500 shadow-lg shadow-purple-500/50"></span>
+                                        {s.category}
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {s.items.map((it, j) => (
+                                            <span key={j} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 text-sm hover:border-purple-500 hover:text-white transition">{it}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* CONTACT */}
+                    <section id="contact" className="relative py-32 px-6 md:px-8 max-w-5xl mx-auto">
+                        <div className="rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-12 md:p-16 text-center reveal">
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Get in <span className="gradient-text">Touch</span></h2>
+                            <p className="text-white/70 max-w-2xl mx-auto mb-10">I welcome the opportunity to discuss professional collaborations, research interests, or potential opportunities. Please feel free to reach out through any of the channels below.</p>
+                            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
+                                <a href="mailto:suhaanrajani276@gmail.com" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                    Email
+                                </a>
+                                <a href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                                    LinkedIn
+                                </a>
+                                <a href="https://github.com/suhaanrajani123" target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                                    GitHub
+                                </a>
+                                <a href="tel:7064901201" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                    Phone
+                                </a>
+                            </div>
+                            <div className="pt-10 border-t border-white/10 space-y-2 text-sm">
+                                <p className="text-white/80"><strong className="text-white">Email:</strong> suhaanrajani276@gmail.com</p>
+                                <p className="text-white/80"><strong className="text-white">Phone:</strong> (706) 490-1201</p>
+                                <p className="text-white/80"><strong className="text-white">LinkedIn:</strong> <a href="https://www.linkedin.com/in/suhaan-rajani" className="text-cyan-400 hover:text-cyan-300">linkedin.com/in/suhaan-rajani</a></p>
+                                <p className="text-white/80"><strong className="text-white">GitHub:</strong> <a href="https://github.com/suhaanrajani123" className="text-cyan-400 hover:text-cyan-300">github.com/suhaanrajani123</a></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <footer className="py-12 px-6 text-center border-t border-white/5">
+                        <p className="text-white/50 text-sm">Designed & Built by <span className="gradient-text font-semibold">Suhaan Rajani</span> · © 2026</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 
 </html>
