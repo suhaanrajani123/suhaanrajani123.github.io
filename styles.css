@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+    @apply flex justify-center items-center min-h-screen bg-gray-200;
+}
+
+.contact-info {
+    @apply w-full max-w-md mx-auto p-8 bg-white shadow-md rounded-lg;
+}
+
+.contact-info h1 {
+    @apply text-3xl font-bold mb-4;
+}
+
+.contact-info ul {
+    @apply list-none flex justify-between mb-4;
+}
+
+.contact-info li {
+    @apply mr-4;
+}
+
+.contact-info a {
+    @apply text-blue-600 hover:text-blue-700;
+}
