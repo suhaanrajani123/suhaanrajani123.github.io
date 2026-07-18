@@ -11,6 +11,19 @@
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
         html,
         body {
             margin: 0;
@@ -163,12 +176,19 @@
 
         const projects = [
             {
+                icon: '📊',
+                title: 'Expense Tracker',
+                description: 'Developed a Python-based tool to track personal finances and manage monthly budgets. Created a visual comparison of budgets vs. actual spending. Leveraged Pandas for efficient data aggregation and implemented predictive budgeting logic to forecast end-of-month expenses.',
+                tags: ['Python', 'Matplotlib', 'Pandas'],
+                links: [],
+            },
+            {
                 icon: '📈',
                 title: 'TradePath — Stock Market Simulator',
                 description: 'An interactive stock market simulator that enables users to trade equities with virtual capital using real-time market data. The application includes comprehensive portfolio management tools and real-time profit and loss calculations.',
                 tags: ['React', 'JavaScript', 'yfinance API', 'Recharts', 'Vercel'],
                 links: [
-                    { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/trade' },
+                    { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/' },
                 ],
             },
             {
@@ -320,10 +340,9 @@
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
                             <div className="lg:col-span-2 reveal">
                                 <h2 className="text-3xl font-bold text-white mb-6">About <span className="text-[#e0a96d]">Me</span></h2>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">I am <strong className="text-white font-semibold">Suhaan Rajani</strong>, a Computer Science student at the <strong className="text-white font-semibold">New Jersey Institute of Technology</strong> with a strong interest in building practical and efficient software solutions.</p>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">My academic and professional experience spans <strong className="text-white font-semibold">full-stack web development</strong>, <strong className="text-white font-semibold">database management</strong>, and <strong className="text-white font-semibold">academic research</strong>. I have developed a solid technical foundation in programming languages such as <strong className="text-white font-semibold">Java, Python, SQL, and JavaScript</strong>, and I am proficient in working with modern frameworks including <strong className="text-white font-semibold">React, Node.js, and Flask</strong>.</p>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Most recently, I developed <strong className="text-white font-semibold">TradePath</strong>, a stock market simulator that integrates real-time financial data to enable virtual trading. I have also engineered a <strong className="text-white font-semibold">supermarket billing system</strong> using Python and SQL to streamline inventory tracking and transaction processing.</p>
-                                <p className="text-gray-300 leading-relaxed text-sm md:text-base">My experience volunteering at an international hostel in Lisbon has further strengthened my skills in <strong className="text-white font-semibold">communication, organization, and customer service</strong>. I am continually motivated to expand my technical expertise and collaborate on projects that create meaningful impact.</p>
+                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Hi, I'm Suhaan Rajani, a passionate Computer Science student pursuing my Bachelor of Science at the New Jersey Institute of Technology. My journey in tech is driven by a profound curiosity about how digital solutions intersect with the human experience. I am deeply fascinated by the broader societal implications of technology, which has inspired me to explore the role of Artificial Intelligence in spiritual, religious, and human interactions through academic research.</p>
+                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Beyond the screen, I am a collaborative, community-oriented individual who values global perspectives—a mindset I actively cultivated while living and volunteering at a hostel in Lisbon, Portugal. I thrive in interdisciplinary environments that challenge my critical thinking and allow me to apply evidence-based analysis to complex, real-world problems.</p>
+                                <p className="text-gray-300 leading-relaxed text-sm md:text-base">Because of my background in hospitality and customer service, I approach all my work with empathy, focusing heavily on usability, engagement, and creating welcoming digital spaces. Ultimately, I am dedicated to continuous learning and eager to bring a well-rounded, human-centric approach to modern computing.</p>
                             </div>
 
                             <div className="rounded-2xl bg-[#1a1a1a] border border-white/5 p-8 self-start reveal shadow-lg">
@@ -405,7 +424,7 @@
                     {/* PROJECTS */}
                     <section id="projects" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
                         <div className="mb-16">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Selected <span className="gradient-text">Projects</span></h2>
+                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4"><span className="gradient-text">Projects</span></h2>
                             <p className="text-white/70 max-w-2xl">A selection of academic and personal projects.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
