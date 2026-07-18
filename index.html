@@ -21,7 +21,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #6c5ce7 0%, #00d4ff 50%, #6c5ce7 100%);
+            background: linear-gradient(135deg, #e0a96d 0%, #d4995c 50%, #e0a96d 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
@@ -278,7 +278,7 @@
                                 </div>
 
                                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold leading-[1.1] mb-4 text-white">
-                                    I'm Suhaan<br />Rajani
+                                    I'm Suhaan Rajani
                                 </h1>
                                 
                                 <p className="text-gray-300 text-base md:text-lg max-w-[400px] mb-4 font-normal">
@@ -302,7 +302,7 @@
                             {/* Right Side (Image Placeholder) */}
                             <div className="flex justify-center lg:justify-end relative z-10 mt-12 lg:mt-0 reveal">
                                 <div className="w-72 h-72 md:w-[400px] md:h-[400px] rounded-full glow-circle bg-[#1a1a1a] overflow-hidden flex items-center justify-center relative">
-                                    <img src="profile.jpg" alt="Suhaan Rajani" className="w-full h-full object-cover" />
+                                    <img src="profile.jpg" alt="Suhaan Rajani" className="w-full h-full object-cover" style={{ transform: 'scale(1.5)', transformOrigin: 'center 35%' }} />
                                 </div>
                             </div>
 
@@ -346,14 +346,14 @@
                         </div>
                         <div className="space-y-6">
                             {experience.map((item, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:translate-x-2 reveal">
-                                    <p className="font-mono text-sm text-purple-400 mb-3">{item.date}</p>
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:translate-x-2 reveal">
+                                    <p className="font-mono text-sm text-[#e0a96d] mb-3">{item.date}</p>
                                     <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
-                                    <p className="text-cyan-400 mb-6">{item.org}</p>
+                                    <p className="text-[#d4995c] mb-6">{item.org}</p>
                                     <ul className="space-y-3">
                                         {item.bullets.map((b, j) => (
                                             <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
-                                                <span className="absolute left-0 text-purple-400">▹</span>
+                                                <span className="absolute left-0 text-[#e0a96d]">▹</span>
                                                 {b}
                                             </li>
                                         ))}
@@ -371,14 +371,14 @@
                         </div>
                         <div className="space-y-6">
                             {education.map((item, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:translate-x-2 reveal">
-                                    <p className="font-mono text-sm text-purple-400 mb-3">{item.date}</p>
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:translate-x-2 reveal">
+                                    <p className="font-mono text-sm text-[#e0a96d] mb-3">{item.date}</p>
                                     <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
-                                    <p className="text-cyan-400 mb-6">{item.org}</p>
+                                    <p className="text-[#d4995c] mb-6">{item.org}</p>
                                     <ul className="space-y-3 mb-6">
                                         {item.bullets.map((b, j) => (
                                             <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
-                                                <span className="absolute left-0 text-purple-400">▹</span>
+                                                <span className="absolute left-0 text-[#e0a96d]">▹</span>
                                                 {b}
                                             </li>
                                         ))}
@@ -388,7 +388,7 @@
                                             <p className="font-mono text-xs text-white/50 uppercase tracking-widest mb-3">Relevant Coursework</p>
                                             <div className="flex flex-wrap gap-2">
                                                 {item.coursework.map((c, j) => (
-                                                    <span key={j} className="px-3 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-mono">{c}</span>
+                                                    <span key={j} className="px-3 py-1 rounded-md bg-[#e0a96d]/10 border border-[#e0a96d]/20 text-[#e0a96d] text-xs font-mono">{c}</span>
                                                 ))}
                                             </div>
                                         </div>
@@ -409,18 +409,18 @@
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {projects.map((p, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 hover:-translate-y-2 flex flex-col reveal">
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:-translate-y-2 flex flex-col reveal">
                                     <div className="text-4xl mb-6">{p.icon}</div>
                                     <h3 className="text-xl font-semibold text-white mb-4">{p.title}</h3>
                                     <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">{p.description}</p>
                                     <div className="flex flex-wrap gap-2 mb-6">
                                         {p.tags.map((t, j) => (
-                                            <span key={j} className="px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-mono">{t}</span>
+                                            <span key={j} className="px-3 py-1 rounded-full bg-[#e0a96d]/10 border border-[#e0a96d]/20 text-[#e0a96d] text-xs font-mono">{t}</span>
                                         ))}
                                     </div>
                                     <div className="flex flex-wrap gap-4">
                                         {p.links.map((l, j) => (
-                                            <a key={j} href={l.href} target="_blank" rel="noopener" className="text-cyan-400 text-sm font-medium hover:text-cyan-300 transition flex items-center gap-1">
+                                            <a key={j} href={l.href} target="_blank" rel="noopener" className="text-[#d4995c] text-sm font-medium hover:text-[#e0a96d] transition flex items-center gap-1">
                                                 {l.label} →
                                             </a>
                                         ))}
@@ -438,14 +438,14 @@
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {skills.map((s, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-purple-500/40 reveal">
+                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 reveal">
                                     <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-3">
-                                        <span className="w-2 h-2 rounded-full bg-purple-500 shadow-lg shadow-purple-500/50"></span>
+                                        <span className="w-2 h-2 rounded-full bg-[#e0a96d] shadow-lg shadow-[#e0a96d]/50"></span>
                                         {s.category}
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {s.items.map((it, j) => (
-                                            <span key={j} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 text-sm hover:border-purple-500 hover:text-white transition">{it}</span>
+                                            <span key={j} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 text-sm hover:border-[#e0a96d] hover:text-white transition">{it}</span>
                                         ))}
                                     </div>
                                 </div>
@@ -479,8 +479,8 @@
                             <div className="pt-10 border-t border-white/10 space-y-2 text-sm">
                                 <p className="text-white/80"><strong className="text-white">Email:</strong> suhaanrajani276@gmail.com</p>
                                 <p className="text-white/80"><strong className="text-white">Phone:</strong> (706) 490-1201</p>
-                                <p className="text-white/80"><strong className="text-white">LinkedIn:</strong> <a href="https://www.linkedin.com/in/suhaan-rajani" className="text-cyan-400 hover:text-cyan-300">linkedin.com/in/suhaan-rajani</a></p>
-                                <p className="text-white/80"><strong className="text-white">GitHub:</strong> <a href="https://github.com/suhaanrajani123" className="text-cyan-400 hover:text-cyan-300">github.com/suhaanrajani123</a></p>
+                                <p className="text-white/80"><strong className="text-white">LinkedIn:</strong> <a href="https://www.linkedin.com/in/suhaan-rajani" className="text-[#d4995c] hover:text-[#e0a96d]">linkedin.com/in/suhaan-rajani</a></p>
+                                <p className="text-white/80"><strong className="text-white">GitHub:</strong> <a href="https://github.com/suhaanrajani123" className="text-[#d4995c] hover:text-[#e0a96d]">github.com/suhaanrajani123</a></p>
                             </div>
                         </div>
                     </section>
