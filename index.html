@@ -133,19 +133,29 @@
                 title: 'Research Assistant',
                 org: 'New Jersey Institute of Technology, Newark, NJ',
                 bullets: [
-                    'Conducted literature reviews on the role of artificial intelligence in spiritual, religious, and human interactions by analyzing academic research.',
-                    'Summarized and synthesized scholarly articles to support an interdisciplinary research project.',
+                    'Conducted a systematic review of academic literature on AI\'s role in spiritual, religious, and human interactions, identifying relevant research threads across interdisciplinary sources.',
+                    'Synthesized scholarly sources into evidence-based analysis to support an ongoing interdisciplinary research project.',
                     'Developed strong competencies in research methodology, critical thinking, and academic writing through evidence-based analysis.',
                 ],
             },
             {
+                date: 'Feb 2026 — April 2026',
+                title: 'Virtual Archives Beta Tester',
+                org: 'New Jersey Institute of Technology, Newark, NJ',
+                bullets: [
+                    'Selected as a beta tester for a pre-release, AI-powered virtual archives platform.',
+                    'Designed and executed structured test cases with reproducible steps, surfacing bugs and usability issues ahead of launch.',
+                    'Evaluated AI-driven archive search and retrieval features, identifying edge cases in query handling and result accuracy.',
+                ],
+            },
+            {
                 date: 'May 2025 — August 2025',
-                title: 'Volunteer',
+                title: 'Front Desk Attendant',
                 org: 'Urban Garden Hostel, Lisbon, Portugal',
                 bullets: [
-                    'Assisted the front desk team by welcoming guests, responding to inquiries, and providing information regarding hostel services and local attractions.',
-                    'Supported daily hostel operations, including organization of common areas, preparation of rooms for new arrivals, and maintenance of a clean, welcoming environment.',
-                    'Collaborated with staff to facilitate guest check-ins and check-outs, ensuring smooth daily operations.',
+                    'Welcomed guests, answered inquiries, and provided information about hostel services and local attractions.',
+                    'Supported daily operations: organized common areas, prepared rooms for arrivals, and maintained a welcoming environment.',
+                    'Assisted staff with guest check-ins and check-outs to ensure smooth daily operations.',
                 ],
             },
         ];
@@ -176,9 +186,16 @@
 
         const projects = [
             {
+                icon: '⚡',
+                title: 'Distributed Rate Limiter and Job Queue',
+                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts. Built an asynchronous Redis-backed job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling.',
+                tags: ['Go', 'Docker Compose', 'Redis', 'Lua Scripts'],
+                links: [],
+            },
+            {
                 icon: '📈',
                 title: 'TradePath — Stock Market Simulator',
-                description: 'An interactive stock market simulator that enables users to trade equities with virtual capital using real-time market data. The application includes comprehensive portfolio management tools and real-time profit and loss calculations.',
+                description: 'Built a full-stack stock market simulator with live and historical price data via the yfinance API. Implemented market and limit order execution with profit/loss recalculated on every price update, avoiding stale-state bugs.',
                 tags: ['React', 'JavaScript', 'yfinance API', 'Recharts', 'Vercel'],
                 links: [
                     { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/' },
@@ -194,7 +211,7 @@
             {
                 icon: '🌐',
                 title: 'Urban Garden Hostel Website',
-                description: 'A responsive hospitality website developed using modern web technologies, with a focus on performance, accessibility, and mobile compatibility. The site presents hostel services and amenities to potential guests.',
+                description: 'Delivered a production website for a live hospitality client, improving mobile load performance and structuring content across service and amenity pages.',
                 tags: ['React', 'HTML/CSS/JS', 'WordPress'],
                 links: [
                     { label: 'Live Demo', href: 'https://www.urbangardenhostel.com/' },
@@ -211,10 +228,11 @@
         ];
 
         const skills = [
-            { category: 'Programming Languages', items: ['Java', 'Python', 'C/C++', 'SQL (Postgres)', 'JavaScript', 'HTML/CSS', 'R'] },
-            { category: 'Frameworks & Libraries', items: ['React', 'Node.js', 'Flask', 'FastAPI', 'WordPress', 'Pandas', 'NumPy', 'Matplotlib'] },
-            { category: 'Developer Tools', items: ['GitHub', 'Docker', 'TravisCI', 'Google Cloud', 'Supabase', 'VS Code', 'PyCharm', 'Eclipse'] },
+            { category: 'Programming Languages', items: ['Go', 'Python', 'TypeScript', 'JavaScript', 'Lua', 'SQL (Postgres)', 'Java', 'C/C++', 'HTML/CSS', 'R'] },
+            { category: 'Frameworks & Libraries', items: ['React', 'Next.js', 'Node.js', 'Flask', 'FastAPI', 'Django', 'Tailwind CSS', 'Material-UI', 'WordPress', 'Pandas', 'NumPy', 'Matplotlib', 'PyTorch'] },
+            { category: 'Developer Tools', items: ['Docker', 'Redis', 'Git', 'GitHub', 'PostgreSQL', 'Supabase', 'SQLite', 'Google Cloud', 'Vercel', 'Render', 'Stripe', 'TravisCI', 'VS Code', 'PyCharm', 'Eclipse'] },
             { category: 'Design & Productivity', items: ['Figma', 'Adobe Illustrator', 'MS Word'] },
+            { category: 'Concepts', items: ['Distributed Systems', 'REST API Design', 'JWT', 'OAuth', 'RAG / Agentic AI', 'Generative AI Fine-Tuning'] },
         ];
 
         function App() {
@@ -303,7 +321,7 @@
                                 </h1>
                                 
                                 <p className="text-lg md:text-xl font-bold mb-10 max-w-[500px] text-gray-200">
-                                    <span className="text-[#e0a96d]">CS student</span> & full-stack web developer.
+                                    <span className="text-[#e0a96d]">CS student</span>, backend engineer & full-stack developer.
                                 </p>
 
 
@@ -329,7 +347,7 @@
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
                             <div className="lg:col-span-2 reveal">
                                 <h2 className="text-3xl font-bold text-white mb-6">About <span className="text-[#e0a96d]">Me</span></h2>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Hi, I'm Suhaan Rajani, a passionate Computer Science student pursuing my Bachelor of Science at the New Jersey Institute of Technology. My journey in tech is driven by a profound curiosity about how digital solutions intersect with the human experience. I am deeply fascinated by the broader societal implications of technology, which has inspired me to explore the role of Artificial Intelligence in spiritual, religious, and human interactions through academic research.</p>
+                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Hi, I'm Suhaan Rajani, a passionate Computer Science student at the New Jersey Institute of Technology specializing in backend and distributed systems engineering. With hands-on experience designing scalable services in Go and Python and building full-stack applications with React, I possess a proven ability to architect and load-test production-grade infrastructure. My journey in tech is driven by a profound curiosity about how digital solutions intersect with the human experience, inspiring me to explore the role of Artificial Intelligence in spiritual, religious, and human interactions through academic research.</p>
                                 <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Beyond the screen, I am a collaborative, community-oriented individual who values global perspectives—a mindset I actively cultivated while living and volunteering at a hostel in Lisbon, Portugal. I thrive in interdisciplinary environments that challenge my critical thinking and allow me to apply evidence-based analysis to complex, real-world problems.</p>
                                 <p className="text-gray-300 leading-relaxed text-sm md:text-base">Because of my background in hospitality and customer service, I approach all my work with empathy, focusing heavily on usability, engagement, and creating welcoming digital spaces. Ultimately, I am dedicated to continuous learning and eager to bring a well-rounded, human-centric approach to modern computing.</p>
                             </div>
