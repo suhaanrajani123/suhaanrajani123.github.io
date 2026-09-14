@@ -143,7 +143,7 @@
                 title: 'Virtual Archives Beta Tester',
                 org: 'New Jersey Institute of Technology, Newark, NJ',
                 bullets: [
-                    'Selected as a beta tester for a pre-release, AI-powered virtual archives platform.',
+                    'Chosen as a beta tester for a pre-release, AI-powered virtual archives platform.',
                     'Designed and executed structured test cases with reproducible steps, surfacing bugs and usability issues ahead of launch.',
                     'Evaluated AI-driven archive search and retrieval features, identifying edge cases in query handling and result accuracy.',
                 ],
@@ -153,9 +153,8 @@
                 title: 'Front Desk Attendant',
                 org: 'Urban Garden Hostel, Lisbon, Portugal',
                 bullets: [
-                    'Welcomed guests, answered inquiries, and provided information about hostel services and local attractions.',
-                    'Supported daily operations: organized common areas, prepared rooms for arrivals, and maintained a welcoming environment.',
-                    'Assisted staff with guest check-ins and check-outs to ensure smooth daily operations.',
+                    'Managed guest check-ins and check-outs, answered inquiries, and provided information about hostel services and local attractions.',
+                    'Supported daily operations including organizing common areas and preparing rooms for arrivals.',
                 ],
             },
         ];
@@ -188,7 +187,7 @@
             {
                 icon: '⚡',
                 title: 'Distributed Rate Limiter and Job Queue',
-                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts. Built an asynchronous Redis-backed job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling.',
+                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts, eliminating race conditions across concurrent instances. Built a Redis-backed job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling for failure recovery. Load-tested at ~22,700 requests/sec with p99 latency under 25ms; containerized with Docker Compose for one-command deployment.',
                 tags: ['Go', 'Docker Compose', 'Redis', 'Lua Scripts'],
                 links: [
                     { label: 'View Source', href: 'https://github.com/suhaanrajani123/ratelimiter-queue' },
@@ -197,7 +196,7 @@
             {
                 icon: '📈',
                 title: 'TradePath — Stock Market Simulator',
-                description: 'Built a full-stack stock market simulator with live and historical price data via the yfinance API. Implemented market and limit order execution with profit/loss recalculated on every price update, avoiding stale-state bugs.',
+                description: 'Built a full-stack stock market simulator with live and historical price data via yfinance, supporting virtual trading with real-time portfolio valuation. Implemented market and limit order execution with profit/loss recalculated on each price update, avoiding stale-state bugs in naive polling designs. Built a normalization layer for yfinance inconsistencies including rate limits and malformed fields, improving data reliability.',
                 tags: ['React', 'JavaScript', 'yfinance API', 'Recharts', 'Vercel'],
                 links: [
                     { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/' },
@@ -215,7 +214,7 @@
             {
                 icon: '🌐',
                 title: 'Urban Garden Hostel Website',
-                description: 'Delivered a production website for a live hospitality client, improving mobile load performance and structuring content across service and amenity pages.',
+                description: 'Delivered a production website for a live hospitality client, implementing responsive layouts that improved mobile load performance and organized content across service and amenity pages.',
                 tags: ['React', 'HTML/CSS/JS', 'WordPress'],
                 links: [
                     { label: 'Live Demo', href: 'https://www.urbangardenhostel.com/' },
