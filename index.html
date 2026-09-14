@@ -129,12 +129,32 @@
 
         const experience = [
             {
+                date: 'Sept 2026 — Present',
+                title: 'Digital Innovation Lab Assistant',
+                org: 'New Jersey Institute of Technology, Newark, NJ',
+                bullets: [
+                    'Provided technical support to students, faculty, and researchers using VR/AR/MR hardware and software for academic projects.',
+                    'Guided users through immersive technology demos, helping integrate VR and generative AI tools into coursework.',
+                    'Collaborated with the Office of Digital Learning on workshops and technical training sessions.',
+                ],
+            },
+            {
+                date: 'Aug 2026 — Present',
+                title: 'Student Associate, SECS (Student Events and Center Services)',
+                org: 'New Jersey Institute of Technology, Newark, NJ',
+                bullets: [
+                    'Served as primary contact at the Campus Center information desk, resolving inquiries from students, faculty, and visitors.',
+                    'Facilitated event logistics and room reservations for student organizations and university departments, ensuring proper setup.',
+                    'Managed administrative workflows including phone communications, issue logging, and resource referrals.',
+                ],
+            },
+            {
                 date: 'June 2026 — July 2026',
                 title: 'Research Assistant',
                 org: 'New Jersey Institute of Technology, Newark, NJ',
                 bullets: [
-                    'Conducted a systematic review of academic literature on AI\'s role in spiritual, religious, and human interactions, identifying relevant research threads across interdisciplinary sources.',
-                    'Synthesized scholarly sources into evidence-based analysis to support an ongoing interdisciplinary research project.',
+                    'Conducted a systematic literature review on AI\'s role in spiritual, religious, and human interactions, identifying relevant research threads across interdisciplinary sources.',
+                    'Synthesized scholarly sources into evidence-based analysis supporting an ongoing interdisciplinary research project.',
                 ],
             },
             {
@@ -186,7 +206,7 @@
             {
                 icon: '⚡',
                 title: 'Distributed Rate Limiter and Job Queue',
-                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts, eliminating race conditions across concurrent instances. Built a Redis-backed job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling for failure recovery. Load-tested at ~22,700 requests/sec with p99 latency under 25ms; containerized with Docker Compose for one-command deployment.',
+                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts, eliminating race conditions across concurrent instances. Built a Redis-backed async job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling. Load-tested at ~22,700 requests/sec with p99 latency under 25ms; containerized with Docker Compose for one-command deployment.',
                 tags: ['Go', 'Docker Compose', 'Redis', 'Lua Scripts'],
                 links: [
                     { label: 'View Source', href: 'https://github.com/suhaanrajani123/ratelimiter-queue' },
@@ -195,8 +215,8 @@
             {
                 icon: '📈',
                 title: 'TradePath — Stock Market Simulator',
-                description: 'Built a full-stack stock market simulator with live and historical price data via yfinance, supporting virtual trading with real-time portfolio valuation. Implemented market and limit order execution with profit/loss recalculated on each price update, avoiding stale-state bugs in naive polling designs. Built a normalization layer for yfinance inconsistencies including rate limits and malformed fields, improving data reliability.',
-                tags: ['React', 'JavaScript', 'yfinance API', 'Recharts', 'Vercel'],
+                description: 'Built a full-stack stock market simulator with live and historical price data via yfinance, supporting virtual trading with real-time portfolio valuation. Implemented market and limit order execution with profit/loss recalculated on every price update, avoiding stale-state bugs in polling designs. Engineered a normalization layer handling yfinance API inconsistencies, including rate limits and malformed fields.',
+                tags: ['JavaScript', 'yfinance', 'Recharts', 'CSS', 'Vercel'],
                 links: [
                     { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/' },
                 ],
@@ -213,8 +233,8 @@
             {
                 icon: '🌐',
                 title: 'Urban Garden Hostel Website',
-                description: 'Delivered a production website for a live hospitality client, implementing responsive layouts that improved mobile load performance and organized content across service and amenity pages.',
-                tags: ['React', 'HTML/CSS/JS', 'WordPress'],
+                description: 'Delivered a production website for a live hospitality client, improving mobile load performance and organizing content across service pages. Built reusable UI components supporting content updates without requiring code changes.',
+                tags: ['JavaScript', 'HTML/CSS'],
                 links: [
                     { label: 'Live Demo', href: 'https://www.urbangardenhostel.com/' },
                 ],
@@ -231,7 +251,7 @@
 
         const skills = [
             { category: 'Languages', items: ['Go', 'Python', 'TypeScript', 'JavaScript', 'SQL', 'Java', 'C/C++', 'HTML/CSS'] },
-            { category: 'Frameworks', items: ['Flask', 'FastAPI', 'Django', 'Node.js', 'React', 'Next.js', 'Tailwind CSS', 'Material-UI', 'WordPress'] },
+            { category: 'Frameworks', items: ['Flask', 'FastAPI', 'Django', 'Node.js', 'Next.js', 'Tailwind CSS', 'Material-UI'] },
             { category: 'Developer Tools', items: ['Docker', 'Redis', 'Git', 'GitHub', 'Supabase', 'Vercel', 'Render', 'Stripe', 'VS Code', 'Figma'] },
             { category: 'Libraries', items: ['pandas', 'NumPy', 'Matplotlib', 'PyTorch'] },
             { category: 'Concepts', items: ['Distributed Systems', 'REST API Design', 'JWT', 'OAuth', 'RAG / Agentic AI', 'Generative AI Fine-Tuning'] },
