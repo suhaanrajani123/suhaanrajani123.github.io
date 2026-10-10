@@ -5,548 +5,1194 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Suhaan Rajani | Portfolio</title>
+    <meta name="description" content="Suhaan Rajani — Computer Science student at NJIT, backend engineer and full-stack developer." />
+    <meta name="theme-color" content="#141312" />
+
+    <!-- Link previews (LinkedIn, iMessage, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Suhaan Rajani | Portfolio" />
+    <meta property="og:description" content="CS student at NJIT · backend engineer & full-stack developer." />
+    <meta property="og:url" content="https://suhaanrajani123.github.io/" />
+    <meta property="og:image" content="https://suhaanrajani123.github.io/profile.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141312'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23c8a27c'%3ES%3C/text%3E%3C/svg%3E" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
+        /* ---------- Tokens ---------- */
+        :root {
+            --bg: #141312;
+            --bg-2: #181715;
+            --surface: #1d1c1a;
+            --surface-2: #232220;
+            --line: rgba(236, 228, 214, 0.07);
+            --line-2: rgba(236, 228, 214, 0.13);
+            --text: #ebe6dd;
+            --muted: #9a958b;
+            --faint: #6b675f;
+            --accent: #c8a27c;
+            --accent-soft: rgba(200, 162, 124, 0.12);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --radius: 18px;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', ui-monospace, monospace;
+        }
+
+        *,
+        *::before,
+        *::after { box-sizing: border-box; }
+
+        html { -webkit-text-size-adjust: 100%; }
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+
+        /* Matte finish: fine film grain + soft vignette over everything */
         body::before {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            inset: -50%;
+            width: 200%;
+            height: 200%;
             pointer-events: none;
-            z-index: 9999;
-            opacity: 0.04;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 100;
+            opacity: 0.07;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
         }
 
-        html,
-        body {
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 99;
+            background: radial-gradient(120% 90% at 50% 0%, transparent 55%, rgba(0, 0, 0, 0.35) 100%);
+        }
+
+        ::selection { background: var(--accent); color: var(--bg); }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+
+        .wrap {
+            width: 100%;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        @media (min-width: 768px) { .wrap { padding: 0 40px; } }
+
+        /* ---------- Nav ---------- */
+        .nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            z-index: 50;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 1080px;
+            transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
+        }
+
+        .nav.hidden { transform: translate(-50%, -140%); opacity: 0; }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 10px 10px 22px;
+            border-radius: 999px;
+            background: rgba(29, 28, 26, 0.72);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(14px) saturate(120%);
+            -webkit-backdrop-filter: blur(14px) saturate(120%);
+            box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand {
+            font-family: var(--serif);
+            font-size: 26px;
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .brand span { color: var(--accent); font-style: italic; }
+
+        .nav-links {
+            display: none;
+            list-style: none;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
+            gap: 2px;
         }
 
-        .gradient-text {
-            background: linear-gradient(135deg, #e0a96d 0%, #d4995c 50%, #e0a96d 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            animation: shine 4s linear infinite;
+        .nav-links a {
+            display: block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            color: var(--muted);
+            transition: color 0.35s var(--ease), background 0.35s var(--ease);
         }
 
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--text); background: var(--surface-2); }
+
+        .nav-cta {
+            display: none;
+            padding: 9px 18px;
+            border-radius: 999px;
+            background: var(--text);
+            color: var(--bg);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.35s var(--ease);
         }
 
+        .nav-cta:hover { background: var(--accent); }
+
+        .menu-btn {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--line-2);
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s var(--ease);
+        }
+
+        .mobile-menu.open { grid-template-rows: 1fr; }
+        .mobile-menu > div { overflow: hidden; }
+
+        .mobile-menu ul {
+            list-style: none;
+            margin: 8px 0 0;
+            padding: 8px;
+            border-radius: 22px;
+            background: rgba(29, 28, 26, 0.95);
+            border: 1px solid var(--line);
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 14px;
+            color: var(--muted);
+        }
+
+        .mobile-menu a:hover { background: var(--surface-2); color: var(--text); }
+
+        @media (min-width: 960px) {
+            .nav-links, .nav-cta { display: flex; }
+            .menu-btn, .mobile-menu { display: none; }
+        }
+
+        /* ---------- Shared type ---------- */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1, h2, h3 { margin: 0; font-weight: 400; }
+
+        .display {
+            font-family: var(--serif);
+            font-size: clamp(56px, 10vw, 128px);
+            line-height: 0.92;
+            letter-spacing: -0.025em;
+        }
+
+        .display em, .h2 em { color: var(--accent); }
+
+        .h2 {
+            font-family: var(--serif);
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .section { padding: 120px 0; position: relative; }
+        .section-head { display: grid; gap: 18px; margin-bottom: 56px; }
+        .section-head p { margin: 0; color: var(--muted); max-width: 520px; }
+
+        .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: transform 0.5s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+            will-change: transform;
+        }
+
+        .btn svg { transition: transform 0.5s var(--ease); }
+        .btn:hover svg { transform: translate(3px, -3px); }
+
+        .btn-primary { background: var(--text); color: var(--bg); }
+        .btn-primary:hover { background: var(--accent); }
+
+        .btn-ghost { border: 1px solid var(--line-2); color: var(--text); }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+        .icon-btn {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            border: 1px solid var(--line-2);
+            color: var(--muted);
+            transition: color 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.5s var(--ease);
+        }
+
+        .icon-btn:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            padding: 140px 0 80px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            gap: 56px;
+            align-items: center;
+        }
+
+        @media (min-width: 960px) {
+            .hero-grid { grid-template-columns: 1.25fr 0.75fr; gap: 72px; }
+        }
+
+        .hero-copy { display: grid; gap: 28px; }
+
+        .hero-sub {
+            margin: 0;
+            font-size: clamp(17px, 1.6vw, 20px);
+            color: var(--muted);
+            max-width: 480px;
+        }
+
+        .hero-sub strong { color: var(--text); font-weight: 500; }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+        .socials { display: flex; gap: 10px; }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #8fb58a;
+            box-shadow: 0 0 0 0 rgba(143, 181, 138, 0.5);
+            animation: pulse 2.6s var(--ease) infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(143, 181, 138, 0.45); }
+            70% { box-shadow: 0 0 0 10px rgba(143, 181, 138, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(143, 181, 138, 0); }
+        }
+
+        .portrait {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            justify-self: center;
+        }
+
+        @media (min-width: 960px) { .portrait { justify-self: end; } }
+
+        .portrait-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            border-radius: 28px;
+            overflow: hidden;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7);
+        }
+
+        .portrait-frame img {
+            width: 100%;
+            height: 112%;
+            object-fit: cover;
+            object-position: 50% 20%;
+            /* matte grade: softened contrast, gently lifted blacks */
+            filter: saturate(0.9) contrast(0.96) brightness(0.97);
+            will-change: transform;
+        }
+
+        /* grain + soft shade over the photo so it sits in the page */
+        .portrait-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, transparent 62%, rgba(20, 19, 18, 0.45) 100%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+            mix-blend-mode: normal;
+            pointer-events: none;
+        }
+
+        .portrait-tag {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            z-index: 2;
+            display: grid;
+            gap: 2px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: rgba(20, 19, 18, 0.7);
+            border: 1px solid var(--line);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .portrait-tag b { font-weight: 500; font-size: 14px; }
+        .portrait-tag span { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+
+        .scroll-cue {
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            display: none;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            color: var(--faint);
+            text-transform: uppercase;
+        }
+
+        .scroll-cue::after {
+            content: "";
+            display: block;
+            width: 1px;
+            height: 40px;
+            margin: 10px auto 0;
+            background: linear-gradient(var(--faint), transparent);
+            animation: drip 2.4s var(--ease) infinite;
+            transform-origin: top;
+        }
+
+        @keyframes drip {
+            0% { transform: scaleY(0); opacity: 1; }
+            60% { transform: scaleY(1); opacity: 1; }
+            100% { transform: scaleY(1); opacity: 0; }
+        }
+
+        @media (min-width: 960px) { .scroll-cue { display: block; } }
+
+        /* ---------- Marquee ---------- */
+        .marquee {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: var(--bg-2);
+            overflow: hidden;
+            padding: 22px 0;
+            mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 48s linear infinite;
+        }
+
+        .marquee:hover .marquee-track { animation-play-state: paused; }
+
+        .marquee-track span {
+            display: inline-flex;
+            align-items: center;
+            gap: 40px;
+            padding-right: 40px;
+            font-family: var(--serif);
+            font-size: 30px;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .marquee-track span::after { content: "✦"; font-size: 14px; color: var(--accent); }
+
+        @keyframes marquee { to { transform: translateX(-50%); } }
+
+        /* ---------- About ---------- */
+        .about-grid { display: grid; gap: 48px; }
+
+        @media (min-width: 960px) { .about-grid { grid-template-columns: 1.5fr 1fr; gap: 72px; } }
+
+        .about-copy p { margin: 0 0 20px; color: var(--muted); font-size: 17px; }
+        .about-copy p:first-child { color: var(--text); font-size: 20px; line-height: 1.55; }
+
+        .facts {
+            align-self: start;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 8px 24px;
+        }
+
+        .fact {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 14px;
+        }
+
+        .fact:last-child { border-bottom: 0; }
+        .fact span:first-child { color: var(--faint); font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 2px; }
+        .fact span:last-child { text-align: right; overflow-wrap: anywhere; }
+        .fact .ok { color: #a9c7a4; }
+
+        /* ---------- Timeline (experience + education) ---------- */
+        .timeline { border-top: 1px solid var(--line); }
+
+        .t-row {
+            display: grid;
+            gap: 10px 48px;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--line);
+            transition: background 0.6s var(--ease);
+        }
+
+        @media (min-width: 860px) { .t-row { grid-template-columns: 220px 1fr; } }
+
+        .t-date { font-family: var(--mono); font-size: 13px; color: var(--accent); padding-top: 6px; }
+        .t-title { font-size: 22px; font-weight: 500; letter-spacing: -0.01em; transition: color 0.4s var(--ease); }
+        .t-org { color: var(--muted); font-size: 15px; margin: 4px 0 16px; }
+        .t-row:hover .t-title { color: var(--accent); }
+
+        .t-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+        .t-list li {
+            position: relative;
+            padding-left: 22px;
+            color: var(--muted);
+            font-size: 15.5px;
+        }
+
+        .t-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 10px;
+            height: 1px;
+            background: var(--faint);
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .chip {
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line-2);
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .t-extra { margin-top: 20px; display: grid; gap: 14px; }
+        .t-extra p { margin: 0; color: var(--muted); font-size: 15px; }
+        .t-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+
+        /* ---------- Projects ---------- */
+        .projects { display: grid; gap: 16px; }
+
+        @media (min-width: 760px) { .projects { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1100px) { .projects { grid-template-columns: repeat(3, 1fr); } }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 28px;
+            border-radius: var(--radius);
+            background: var(--surface);
+            border: 1px solid var(--line);
+            transition: transform 0.7s var(--ease), border-color 0.5s var(--ease), background 0.5s var(--ease);
+            will-change: transform;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--line-2);
+            background: var(--surface-2);
+        }
+
+        .card-top { display: flex; justify-content: space-between; align-items: center; }
+        .card-num { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+
+        .card-arrow {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid var(--line-2);
+            color: var(--muted);
+            transition: all 0.5s var(--ease);
+        }
+
+        .card:hover .card-arrow { background: var(--accent); border-color: var(--accent); color: var(--bg); transform: rotate(45deg); }
+
+        .card h3 { font-family: var(--serif); font-size: 30px; line-height: 1.05; letter-spacing: -0.01em; }
+        .card p { margin: 0; color: var(--muted); font-size: 15px; flex: 1; }
+
+        .card-links { display: flex; flex-wrap: wrap; gap: 18px; }
+
+        .card-links a {
+            font-size: 14px;
+            color: var(--text);
+            border-bottom: 1px solid var(--line-2);
+            padding-bottom: 2px;
+            transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+        }
+
+        .card-links a:hover { color: var(--accent); border-color: var(--accent); }
+        .card-links .muted { font-size: 14px; color: var(--faint); }
+
+        /* stretch the whole card to the first link */
+        .card .stretch::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+        .card-links a:not(.stretch) { position: relative; z-index: 1; }
+
+        /* ---------- Skills ---------- */
+        .skills { border-top: 1px solid var(--line); }
+
+        .skill-row {
+            display: grid;
+            gap: 14px 48px;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        @media (min-width: 860px) { .skill-row { grid-template-columns: 220px 1fr; align-items: baseline; } }
+
+        .skill-row h3 { font-family: var(--serif); font-size: 28px; }
+
+        .skill-row .chip { font-family: var(--sans); font-size: 14px; color: var(--text); padding: 7px 14px; transition: border-color 0.4s var(--ease), color 0.4s var(--ease); }
+        .skill-row .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ---------- Contact ---------- */
+        .contact {
+            text-align: center;
+            padding: 140px 0 120px;
+        }
+
+        .contact .display { font-size: clamp(52px, 9vw, 120px); }
+
+        .contact p.lead { color: var(--muted); max-width: 560px; margin: 28px auto 40px; font-size: 17px; }
+
+        .mail-link {
+            display: inline-block;
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(26px, 4vw, 44px);
+            color: var(--text);
+            border-bottom: 1px solid var(--line-2);
+            padding-bottom: 4px;
+            transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+            overflow-wrap: anywhere;
+        }
+
+        .mail-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 44px; }
+
+        .contact-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 32px;
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid var(--line);
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--faint);
+        }
+
+        .contact-meta a:hover { color: var(--accent); }
+
+        footer {
+            padding: 28px 0 40px;
+            border-top: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--faint);
+        }
+
+        footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+        .to-top { color: var(--muted); transition: color 0.4s var(--ease); }
+        .to-top:hover { color: var(--accent); }
+
+        /* ---------- Reveal animations ---------- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(28px);
+            filter: blur(6px);
+            transition: opacity 1.1s var(--ease), transform 1.1s var(--ease), filter 1.1s var(--ease);
+            transition-delay: var(--d, 0ms);
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .reveal.in { opacity: 1; transform: none; filter: none; }
+
+        /* hero headline: line-by-line rise */
+        .line { display: block; overflow: hidden; padding-bottom: 0.08em; }
+
+        .line > span {
+            display: inline-block;
+            transform: translateY(105%);
+            transition: transform 1.3s var(--ease);
+            transition-delay: var(--d, 0ms);
         }
 
-        .nav-scrolled {
-            padding-top: 16px !important;
-            padding-bottom: 16px !important;
-            background: rgba(17, 17, 17, 0.9) !important;
+        .loaded .line > span { transform: none; }
+
+        /* scroll progress hairline */
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            z-index: 60;
+            background: var(--accent);
+            transform-origin: 0 50%;
+            transform: scaleX(0);
+            opacity: 0.8;
         }
 
-        .bg-text {
-            position: absolute;
-            bottom: -5%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 11vw;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            white-space: nowrap;
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; filter: none; }
+            .line > span { transform: none; }
         }
 
-        .glow-circle {
-            box-shadow: 0 0 40px 5px rgba(224, 169, 109, 0.25), inset 0 0 20px rgba(224, 169, 109, 0.15);
-            border: 2px solid rgba(224, 169, 109, 0.6);
-        }
-
-        #root {
-            position: relative;
-            z-index: 2;
-        }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
     </style>
 </head>
 
-<body class="bg-[#111111]">
-    <div id="root"></div>
+<body>
+    <div class="progress" aria-hidden="true"></div>
 
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone@7.24.7/babel.min.js"></script>
+    <!-- ================= NAV ================= -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#home" class="brand">Suhaan<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Get in touch</a>
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="8" x2="20" y2="8" /><line x1="4" y1="16" x2="20" y2="16" /></svg>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
-
-        const ArrowUpRight = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
-                <path d="M7 7h10v10" /><path d="M7 17 17 7" />
-            </svg>
-        );
-        const MenuIcon = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
-                <line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="18" y2="18" />
-            </svg>
-        );
-        const XIcon = (props) => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={props.className}>
-                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
-            </svg>
-        );
-
-        const navLinks = [
-            { label: 'Home', href: '#home' },
-            { label: 'About', href: '#about' },
-            { label: 'Experience', href: '#experience' },
-            { label: 'Projects', href: '#projects' },
-            { label: 'Skills', href: '#skills' },
-            { label: 'Contact', href: '#contact' },
-        ];
-
-        const experience = [
-            {
-                date: 'Sept 2026 — Present',
-                title: 'Digital Innovation Lab Assistant',
-                org: 'New Jersey Institute of Technology, Newark, NJ',
-                bullets: [
-                    'Provided technical support to students, faculty, and researchers using VR/AR/MR hardware and software for academic projects.',
-                    'Guided users through immersive technology demos, helping integrate VR and generative AI tools into coursework.',
-                    'Collaborated with the Office of Digital Learning on workshops and technical training sessions.',
-                ],
-            },
-            {
-                date: 'Aug 2026 — Present',
-                title: 'Student Associate, SECS (Student Events and Center Services)',
-                org: 'New Jersey Institute of Technology, Newark, NJ',
-                bullets: [
-                    'Served as primary contact at the Campus Center information desk, resolving inquiries from students, faculty, and visitors.',
-                    'Facilitated event logistics and room reservations for student organizations and university departments, ensuring proper setup.',
-                    'Managed administrative workflows including phone communications, issue logging, and resource referrals.',
-                ],
-            },
-            {
-                date: 'June 2026 — July 2026',
-                title: 'Research Assistant',
-                org: 'New Jersey Institute of Technology, Newark, NJ',
-                bullets: [
-                    'Conducted a systematic literature review on AI\'s role in spiritual, religious, and human interactions, identifying relevant research threads across interdisciplinary sources.',
-                    'Synthesized scholarly sources into evidence-based analysis supporting an ongoing interdisciplinary research project.',
-                ],
-            },
-            {
-                date: 'Feb 2026 — April 2026',
-                title: 'Virtual Archives Beta Tester',
-                org: 'New Jersey Institute of Technology, Newark, NJ',
-                bullets: [
-                    'Chosen as a beta tester for a pre-release, AI-powered virtual archives platform.',
-                    'Designed and executed structured test cases with reproducible steps, surfacing bugs and usability issues ahead of launch.',
-                    'Evaluated AI-driven archive search and retrieval features, identifying edge cases in query handling and result accuracy.',
-                ],
-            },
-            {
-                date: 'May 2025 — August 2025',
-                title: 'Front Desk Attendant',
-                org: 'Urban Garden Hostel, Lisbon, Portugal',
-                bullets: [
-                    'Managed guest check-ins and check-outs, answered inquiries, and provided information about hostel services and local attractions.',
-                    'Supported daily operations including organizing common areas and preparing rooms for arrivals.',
-                ],
-            },
-        ];
-
-        const education = [
-            {
-                date: 'Aug 2025 — May 2029',
-                title: 'Bachelor of Science in Computer Science',
-                org: 'New Jersey Institute of Technology, Newark, NJ',
-                bullets: [
-                    'Pursuing a B.S. in Computer Science with a strong focus on software development, data analysis, and modern web technologies.',
-                    'Actively engaged in research, web development, and design projects spanning multiple domains.',
-                ],
-            },
-            {
-                date: '2023 — 2025',
-                title: 'Higher Secondary Education — PCM Curriculum',
-                org: 'Delhi Public School Nacharam, Hyderabad, India',
-                bullets: [
-                    'Completed higher secondary education under the PCM (Physics, Chemistry, Mathematics) curriculum, establishing a strong analytical and quantitative foundation.',
-                    'Developed strong problem-solving and logical reasoning skills through rigorous coursework in mathematics and the sciences.',
-                    'Engaged in self-directed programming and extracurricular activities that cultivated a sustained interest in computer science.',
-                ],
-                coursework: ['Informatics Practices', 'Python Basics', 'MySQL Fundamentals', 'Data Handling'],
-                description: 'Informatics Practices was a core subject that introduced me to the fundamentals of computer science, including basic Python programming and MySQL database management. The coursework provided my first formal exposure to writing code, working with data structures, and querying relational databases, which laid the groundwork for my subsequent studies in computer science.',
-            },
-        ];
-
-        const projects = [
-            {
-                icon: '⚡',
-                title: 'Distributed Rate Limiter and Job Queue',
-                description: 'Engineered a horizontally scalable rate-limiting service in Go implementing Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts, eliminating race conditions across concurrent instances. Built a Redis-backed async job queue with a concurrent worker pool, exponential backoff retries with jitter, and dead-letter handling. Load-tested at ~22,700 requests/sec with p99 latency under 25ms; containerized with Docker Compose for one-command deployment.',
-                tags: ['Go', 'Docker Compose', 'Redis', 'Lua Scripts'],
-                links: [
-                    { label: 'View Source', href: 'https://github.com/suhaanrajani123/ratelimiter-queue' },
-                ],
-            },
-            {
-                icon: '📈',
-                title: 'TradePath — Stock Market Simulator',
-                description: 'Built a full-stack stock market simulator with live and historical price data via yfinance, supporting virtual trading with real-time portfolio valuation. Implemented market and limit order execution with profit/loss recalculated on every price update, avoiding stale-state bugs in polling designs. Engineered a normalization layer handling yfinance API inconsistencies, including rate limits and malformed fields.',
-                tags: ['JavaScript', 'yfinance', 'Recharts', 'CSS', 'Vercel'],
-                links: [
-                    { label: 'Live Demo', href: 'https://trading-game-coral.vercel.app/' },
-                ],
-            },
-            {
-                icon: '📊',
-                title: 'Expense Tracker',
-                description: 'Developed a Python-based tool to track personal finances and manage monthly budgets. Created a visual comparison of budgets vs. actual spending. Leveraged Pandas for efficient data aggregation and implemented predictive budgeting logic to forecast end-of-month expenses.',
-                tags: ['Python', 'Matplotlib', 'Pandas'],
-                links: [
-                    { label: 'View Source', href: 'https://github.com/suhaanrajani123/Expense-tracker' },
-                ],
-            },
-            {
-                icon: '🌐',
-                title: 'Urban Garden Hostel Website',
-                description: 'Delivered a production website for a live hospitality client, improving mobile load performance and organizing content across service pages. Built reusable UI components supporting content updates without requiring code changes.',
-                tags: ['JavaScript', 'HTML/CSS'],
-                links: [
-                    { label: 'Live Demo', href: 'https://www.urbangardenhostel.com/' },
-                ],
-            },
-            {
-                icon: '🛒',
-                title: 'SuperMarket Billing Software',
-                description: 'A full-featured retail billing system integrating SQL database management, transaction processing, and inventory tracking. Database indexing was implemented to optimize query performance.',
-                tags: ['Python', 'Pandas', 'SQL'],
-                links: [
-                ],
-            },
-        ];
-
-        const skills = [
-            { category: 'Languages', items: ['Go', 'Python', 'TypeScript', 'JavaScript', 'SQL', 'Java', 'C/C++', 'HTML/CSS'] },
-            { category: 'Frameworks', items: ['Flask', 'FastAPI', 'Django', 'Node.js', 'Next.js', 'Tailwind CSS', 'Material-UI'] },
-            { category: 'Developer Tools', items: ['Docker', 'Redis', 'Git', 'GitHub', 'Supabase', 'Vercel', 'Render', 'Stripe', 'VS Code', 'Figma'] },
-            { category: 'Libraries', items: ['pandas', 'NumPy', 'Matplotlib', 'PyTorch'] },
-            { category: 'Concepts', items: ['Distributed Systems', 'REST API Design', 'JWT', 'OAuth', 'RAG / Agentic AI', 'Generative AI Fine-Tuning'] },
-        ];
-
-        function App() {
-            const [open, setOpen] = useState(false);
-            const [scrolled, setScrolled] = useState(false);
-
-            useEffect(() => {
-                const onScroll = () => setScrolled(window.scrollY > 30);
-                window.addEventListener('scroll', onScroll);
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) entry.target.classList.add('visible');
-                    });
-                });
-                setTimeout(() => {
-                    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-                }, 100);
-
-                return () => window.removeEventListener('scroll', onScroll);
-            }, []);
-
-            return (
-                <div className="text-white font-sans bg-[#111111] min-h-screen relative overflow-hidden">
-                    {/* NAV */}
-                    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'nav-scrolled shadow-lg backdrop-blur-md' : 'py-8'}`}>
-                        <div className="mx-auto max-w-7xl px-6 md:px-12">
-                            <div className="flex items-center justify-between">
-                                <a href="#home" className="text-3xl font-bold text-[#e0a96d]">
-                                    Suhaan.
-                                </a>
-
-                                <ul className="hidden lg:flex items-center gap-10">
-                                    {navLinks.map((l) => (
-                                        <li key={l.label}>
-                                            <a href={l.href} className="text-[15px] font-semibold text-white hover:text-[#e0a96d] transition-colors">
-                                                {l.label}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <button onClick={() => setOpen(!open)} className="lg:hidden text-white" aria-label="Toggle menu">
-                                    {open ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
-                                </button>
-                            </div>
-
-                            {open && (
-                                <ul className="mt-4 flex flex-col gap-2 rounded-xl bg-[#1a1a1a] p-4 lg:hidden shadow-xl border border-white/5">
-                                    {navLinks.map((l) => (
-                                        <li key={l.label}>
-                                            <a href={l.href} onClick={() => setOpen(false)} className="block rounded-lg px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/5 hover:text-[#e0a96d]">
-                                                {l.label}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+    <main>
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="wrap">
+                <div class="hero-grid">
+                    <div class="hero-copy">
+                        <span class="eyebrow reveal" style="--d:100ms">CS @ NJIT · Newark, NJ</span>
+                        <h1 class="display">
+                            <span class="line"><span style="--d:150ms">Suhaan</span></span>
+                            <span class="line"><span style="--d:280ms"><em>Rajani</em></span></span>
+                        </h1>
+                        <p class="hero-sub reveal" style="--d:450ms">
+                            <strong>Computer Science student</strong>, backend engineer &amp; full-stack developer — building
+                            scalable services in Go and Python, and products people enjoy using.
+                        </p>
+                        <div class="hero-actions reveal" style="--d:560ms">
+                            <a href="#projects" class="btn btn-primary">
+                                View my work
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
+                            </a>
+                            <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-ghost">Resume</a>
                         </div>
-                    </nav>
-
-                    {/* HERO */}
-                    <section id="home" className="relative min-h-screen w-full flex items-center pt-24 pb-12 px-6 md:px-12 max-w-7xl mx-auto z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
-                            
-                            {/* Left Side */}
-                            <div className="flex flex-col items-start z-10 reveal">
-                                {/* Social Icons */}
-                                <div className="flex gap-4 mb-8">
-                                    <a href="tel:7064901201" className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#e0a96d] transition border border-white/5 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                    </a>
-                                    <a href="https://github.com/suhaanrajani123" target="_blank" className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#e0a96d] transition border border-white/5 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                                    </a>
-                                    <a href="https://www.instagram.com/suhaan_rajani" target="_blank" className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#e0a96d] transition border border-white/5 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                    </a>
-                                    <a href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" className="w-12 h-12 rounded-full bg-[#1a1a1a] flex items-center justify-center hover:bg-[#2a2a2a] hover:text-[#e0a96d] transition border border-white/5 shadow-md">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                                    </a>
-                                </div>
-
-                                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold leading-[1.1] mb-4 text-white">
-                                    I'm Suhaan Rajani
-                                </h1>
-                                
-                                <p className="text-lg md:text-xl font-bold mb-10 max-w-[500px] text-gray-200">
-                                    <span className="text-[#e0a96d]">CS student</span>, backend engineer & full-stack developer.
-                                </p>
-
-
-                            </div>
-
-                            {/* Right Side (Image Placeholder) */}
-                            <div className="flex justify-center lg:justify-end relative z-10 mt-12 lg:mt-0 reveal">
-                                <div className="w-72 h-72 md:w-[400px] md:h-[400px] rounded-full glow-circle bg-[#1a1a1a] overflow-hidden flex items-center justify-center relative">
-                                    <img src="profile.jpg" alt="Suhaan Rajani" className="w-full h-full object-cover" style={{ transform: 'scale(1.7)', transformOrigin: '60% 40%' }} />
-                                </div>
-                            </div>
-
+                        <div class="socials reveal" style="--d:660ms">
+                            <a class="icon-btn" href="https://github.com/suhaanrajani123" target="_blank" rel="noopener" aria-label="GitHub">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 0-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.3-.5-1.5.2-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.5.4.9 1.1.9 2.2v3.3c0 .3.1.7.8.6A12 12 0 0 0 12 .3" /></svg>
+                            </a>
+                            <a class="icon-btn" href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" /></svg>
+                            </a>
+                            <a class="icon-btn" href="https://www.instagram.com/suhaan_rajani" target="_blank" rel="noopener" aria-label="Instagram">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                            </a>
+                            <a class="icon-btn" href="mailto:suhaanrajani276@gmail.com" aria-label="Email">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                            </a>
                         </div>
+                    </div>
 
-                        {/* Background Text Overlay */}
-                        <div className="bg-text">
-                            SUHAAN RAJANI
-                        </div>
-                    </section>
-
-                    {/* ABOUT */}
-                    <section id="about" className="relative py-20 px-6 md:px-12 max-w-7xl mx-auto z-10">
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 w-full">
-                            <div className="lg:col-span-2 reveal">
-                                <h2 className="text-3xl font-bold text-white mb-6">About <span className="text-[#e0a96d]">Me</span></h2>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Hi, I'm Suhaan Rajani, a passionate Computer Science student at the New Jersey Institute of Technology specializing in backend and distributed systems engineering. With hands-on experience designing scalable services in Go and Python and building full-stack applications with React, I possess a proven ability to architect and load-test production-grade infrastructure. My journey in tech is driven by a profound curiosity about how digital solutions intersect with the human experience, inspiring me to explore the role of Artificial Intelligence in spiritual, religious, and human interactions through academic research.</p>
-                                <p className="text-gray-300 leading-relaxed mb-4 text-sm md:text-base">Beyond the screen, I am a collaborative, community-oriented individual who values global perspectives—a mindset I actively cultivated while living and volunteering at a hostel in Lisbon, Portugal. I thrive in interdisciplinary environments that challenge my critical thinking and allow me to apply evidence-based analysis to complex, real-world problems.</p>
-                                <p className="text-gray-300 leading-relaxed text-sm md:text-base">Because of my background in hospitality and customer service, I approach all my work with empathy, focusing heavily on usability, engagement, and creating welcoming digital spaces. Ultimately, I am dedicated to continuous learning and eager to bring a well-rounded, human-centric approach to modern computing.</p>
-                            </div>
-
-                            <div className="rounded-2xl bg-[#1a1a1a] border border-white/5 p-8 self-start reveal shadow-lg">
-                                <div className="space-y-4">
-                                    <div className="flex justify-between py-2 border-b border-white/5"><span className="text-gray-400 text-sm">Name</span><span className="text-white text-sm font-semibold">Suhaan Rajani</span></div>
-                                    <div className="flex justify-between py-2 border-b border-white/5"><span className="text-gray-400 text-sm">Location</span><span className="text-white text-sm font-semibold">Newark, NJ</span></div>
-                                    <div className="flex justify-between py-2 border-b border-white/5"><span className="text-gray-400 text-sm">University</span><span className="text-white text-sm font-semibold">NJIT</span></div>
-                                    <div className="flex justify-between py-2 border-b border-white/5"><span className="text-gray-400 text-sm">Degree</span><span className="text-white text-sm font-semibold">B.S. CS</span></div>
-                                    <div className="flex justify-between py-2 border-b border-white/5"><span className="text-gray-400 text-sm">Email</span><span className="text-white text-sm font-semibold">suhaanrajani276@gmail.com</span></div>
-                                    <div className="flex justify-between py-2"><span className="text-gray-400 text-sm">Status</span><span className="text-[#e0a96d] text-sm font-semibold">Available</span></div>
-                                </div>
+                    <div class="portrait reveal" style="--d:300ms">
+                        <div class="portrait-frame">
+                            <img id="portraitImg" src="profile.jpg" alt="Portrait of Suhaan Rajani" width="800" height="1000" fetchpriority="high" />
+                            <div class="portrait-tag">
+                                <b><span class="status"><span class="dot"></span>Open to opportunities</span></b>
+                                <span>INTERNSHIPS · RESEARCH</span>
                             </div>
                         </div>
-                    </section>
-
-                    {/* EXPERIENCE */}
-                    <section id="experience" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Professional <span className="gradient-text">Experience</span></h2>
-                            <p className="text-white/70 max-w-2xl">Research and professional work experience.</p>
-                        </div>
-                        <div className="space-y-6">
-                            {experience.map((item, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:translate-x-2 reveal">
-                                    <p className="font-mono text-sm text-[#e0a96d] mb-3">{item.date}</p>
-                                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
-                                    <p className="text-[#d4995c] mb-6">{item.org}</p>
-                                    <ul className="space-y-3">
-                                        {item.bullets.map((b, j) => (
-                                            <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
-                                                <span className="absolute left-0 text-[#e0a96d]">▹</span>
-                                                {b}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* EDUCATION */}
-                    <section id="education" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Academic <span className="gradient-text">Background</span></h2>
-                            <p className="text-white/70 max-w-2xl">My academic journey and relevant coursework.</p>
-                        </div>
-                        <div className="space-y-6">
-                            {education.map((item, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:translate-x-2 reveal">
-                                    <p className="font-mono text-sm text-[#e0a96d] mb-3">{item.date}</p>
-                                    <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
-                                    <p className="text-[#d4995c] mb-6">{item.org}</p>
-                                    <ul className="space-y-3 mb-6">
-                                        {item.bullets.map((b, j) => (
-                                            <li key={j} className="text-white/80 leading-relaxed pl-6 relative">
-                                                <span className="absolute left-0 text-[#e0a96d]">▹</span>
-                                                {b}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    {item.coursework && (
-                                        <div className="pt-6 border-t border-white/5">
-                                            <p className="font-mono text-xs text-white/50 uppercase tracking-widest mb-3">Relevant Coursework</p>
-                                            <div className="flex flex-wrap gap-2">
-                                                {item.coursework.map((c, j) => (
-                                                    <span key={j} className="px-3 py-1 rounded-md bg-[#e0a96d]/10 border border-[#e0a96d]/20 text-[#e0a96d] text-xs font-mono">{c}</span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                    {item.description && (
-                                        <p className="text-white/80 leading-relaxed mt-6 pt-6 border-t border-white/5">{item.description}</p>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* PROJECTS */}
-                    <section id="projects" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4"><span className="gradient-text">Projects</span></h2>
-                            <p className="text-white/70 max-w-2xl">A selection of academic and personal projects.</p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {projects.map((p, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 hover:-translate-y-2 flex flex-col reveal">
-                                    <div className="text-4xl mb-6">{p.icon}</div>
-                                    <h3 className="text-xl font-semibold text-white mb-4">{p.title}</h3>
-                                    <p className="text-white/70 text-sm leading-relaxed mb-6 flex-1">{p.description}</p>
-                                    <div className="flex flex-wrap gap-2 mb-6">
-                                        {p.tags.map((t, j) => (
-                                            <span key={j} className="px-3 py-1 rounded-full bg-[#e0a96d]/10 border border-[#e0a96d]/20 text-[#e0a96d] text-xs font-mono">{t}</span>
-                                        ))}
-                                    </div>
-                                    <div className="flex flex-wrap gap-4">
-                                        {p.links.map((l, j) => (
-                                            <a key={j} href={l.href} target="_blank" rel="noopener" className="text-[#d4995c] text-sm font-medium hover:text-[#e0a96d] transition flex items-center gap-1">
-                                                {l.label} →
-                                            </a>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* SKILLS */}
-                    <section id="skills" className="relative py-32 px-6 md:px-8 max-w-7xl mx-auto">
-                        <div className="mb-16">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Technical <span className="gradient-text">Proficiencies</span></h2>
-                            <p className="text-white/70 max-w-2xl">Programming languages, frameworks, and tools I have worked with.</p>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {skills.map((s, i) => (
-                                <div key={i} className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition hover:border-[#e0a96d]/40 reveal">
-                                    <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-3">
-                                        <span className="w-2 h-2 rounded-full bg-[#e0a96d] shadow-lg shadow-[#e0a96d]/50"></span>
-                                        {s.category}
-                                    </h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        {s.items.map((it, j) => (
-                                            <span key={j} className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/80 text-sm hover:border-[#e0a96d] hover:text-white transition">{it}</span>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-
-                    {/* CONTACT */}
-                    <section id="contact" className="relative py-32 px-6 md:px-8 max-w-5xl mx-auto">
-                        <div className="rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-12 md:p-16 text-center reveal">
-                            <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Get in <span className="gradient-text">Touch</span></h2>
-                            <p className="text-white/70 max-w-2xl mx-auto mb-10">I welcome the opportunity to discuss professional collaborations, research interests, or potential opportunities. Please feel free to reach out through any of the channels below.</p>
-                            <div className="flex flex-wrap items-center justify-center gap-4 mb-10">
-                                <a href="resume.pdf" target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-[#e0a96d]/50 bg-[#e0a96d]/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-[#e0a96d]/20 hover:border-[#e0a96d]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                                    View Resume
-                                </a>
-                                <a href="mailto:suhaanrajani276@gmail.com" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                                    Email
-                                </a>
-                                <a href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                                    LinkedIn
-                                </a>
-                                <a href="https://github.com/suhaanrajani123" target="_blank" rel="noopener" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                                    GitHub
-                                </a>
-                                <a href="tel:7064901201" className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-white transition hover:bg-white/20">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                                    Phone
-                                </a>
-                            </div>
-                            <div className="pt-10 border-t border-white/10 space-y-2 text-sm">
-                                <p className="text-white/80"><strong className="text-white">Email:</strong> suhaanrajani276@gmail.com</p>
-                                <p className="text-white/80"><strong className="text-white">Phone:</strong> (706) 490-1201</p>
-                                <p className="text-white/80"><strong className="text-white">LinkedIn:</strong> <a href="https://www.linkedin.com/in/suhaan-rajani" className="text-[#d4995c] hover:text-[#e0a96d]">linkedin.com/in/suhaan-rajani</a></p>
-                                <p className="text-white/80"><strong className="text-white">GitHub:</strong> <a href="https://github.com/suhaanrajani123" className="text-[#d4995c] hover:text-[#e0a96d]">github.com/suhaanrajani123</a></p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <footer className="py-12 px-6 text-center border-t border-white/5">
-                        <p className="text-white/50 text-sm">Designed & Built by <span className="gradient-text font-semibold">Suhaan Rajani</span> · © 2026</p>
-                    </footer>
+                    </div>
                 </div>
-            );
-        }
+            </div>
+            <div class="scroll-cue">Scroll</div>
+        </section>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        <!-- ================= MARQUEE ================= -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Distributed Systems</span><span>Backend Engineering</span><span>Go &amp; Python</span><span>Full-Stack Web</span><span>Applied AI</span><span>REST API Design</span>
+                <span>Distributed Systems</span><span>Backend Engineering</span><span>Go &amp; Python</span><span>Full-Stack Web</span><span>Applied AI</span><span>REST API Design</span>
+            </div>
+        </div>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow reveal">01 — About</span>
+                    <h2 class="h2 reveal" style="--d:80ms">A little <em>about me</em></h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <p class="reveal">Hi, I'm Suhaan Rajani, a Computer Science student at the New Jersey Institute of Technology specializing in backend and distributed systems engineering. I design scalable services in Go and Python, build full-stack applications with React, and architect and load-test production-grade infrastructure.</p>
+                        <p class="reveal" style="--d:60ms">My journey in tech is driven by curiosity about how digital solutions intersect with the human experience — which led me to research the role of Artificial Intelligence in spiritual, religious, and human interactions.</p>
+                        <p class="reveal" style="--d:120ms">Beyond the screen, I'm a collaborative, community-oriented person who values global perspectives, a mindset I built while living and working at a hostel in Lisbon, Portugal. That background in hospitality shapes how I build: with empathy, a focus on usability, and a human-centric approach to modern computing.</p>
+                    </div>
+                    <div class="facts reveal" style="--d:150ms">
+                        <div class="fact"><span>Name</span><span>Suhaan Rajani</span></div>
+                        <div class="fact"><span>Based in</span><span>Newark, NJ</span></div>
+                        <div class="fact"><span>University</span><span>NJIT</span></div>
+                        <div class="fact"><span>Degree</span><span>B.S. Computer Science · 2029</span></div>
+                        <div class="fact"><span>Email</span><span>suhaanrajani276@gmail.com</span></div>
+                        <div class="fact"><span>Status</span><span class="ok">Available</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= EXPERIENCE ================= -->
+        <section class="section" id="experience">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow reveal">02 — Experience</span>
+                    <h2 class="h2 reveal" style="--d:80ms">Where I've <em>worked</em></h2>
+                    <p class="reveal" style="--d:140ms">Research and professional work experience.</p>
+                </div>
+
+                <div class="timeline">
+                    <article class="t-row reveal">
+                        <div class="t-date">Sept 2026 — Present</div>
+                        <div>
+                            <h3 class="t-title">Digital Innovation Lab Assistant</h3>
+                            <div class="t-org">New Jersey Institute of Technology · Newark, NJ</div>
+                            <ul class="t-list">
+                                <li>Provided technical support to students, faculty, and researchers using VR/AR/MR hardware and software for academic projects.</li>
+                                <li>Guided users through immersive technology demos, helping integrate VR and generative AI tools into coursework.</li>
+                                <li>Collaborated with the Office of Digital Learning on workshops and technical training sessions.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="t-row reveal">
+                        <div class="t-date">Aug 2026 — Present</div>
+                        <div>
+                            <h3 class="t-title">Student Associate, SECS (Student Events and Center Services)</h3>
+                            <div class="t-org">New Jersey Institute of Technology · Newark, NJ</div>
+                            <ul class="t-list">
+                                <li>Served as primary contact at the Campus Center information desk, resolving inquiries from students, faculty, and visitors.</li>
+                                <li>Facilitated event logistics and room reservations for student organizations and university departments, ensuring proper setup.</li>
+                                <li>Managed administrative workflows including phone communications, issue logging, and resource referrals.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="t-row reveal">
+                        <div class="t-date">June 2026 — July 2026</div>
+                        <div>
+                            <h3 class="t-title">Research Assistant</h3>
+                            <div class="t-org">New Jersey Institute of Technology · Newark, NJ</div>
+                            <ul class="t-list">
+                                <li>Conducted a systematic literature review on AI's role in spiritual, religious, and human interactions, identifying relevant research threads across interdisciplinary sources.</li>
+                                <li>Synthesized scholarly sources into evidence-based analysis supporting an ongoing interdisciplinary research project.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="t-row reveal">
+                        <div class="t-date">Feb 2026 — April 2026</div>
+                        <div>
+                            <h3 class="t-title">Virtual Archives Beta Tester</h3>
+                            <div class="t-org">New Jersey Institute of Technology · Newark, NJ</div>
+                            <ul class="t-list">
+                                <li>Chosen as a beta tester for a pre-release, AI-powered virtual archives platform.</li>
+                                <li>Designed and executed structured test cases with reproducible steps, surfacing bugs and usability issues ahead of launch.</li>
+                                <li>Evaluated AI-driven archive search and retrieval features, identifying edge cases in query handling and result accuracy.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="t-row reveal">
+                        <div class="t-date">May 2025 — August 2025</div>
+                        <div>
+                            <h3 class="t-title">Front Desk Attendant</h3>
+                            <div class="t-org">Urban Garden Hostel · Lisbon, Portugal</div>
+                            <ul class="t-list">
+                                <li>Managed guest check-ins and check-outs, answered inquiries, and provided information about hostel services and local attractions.</li>
+                                <li>Supported daily operations including organizing common areas and preparing rooms for arrivals.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= EDUCATION ================= -->
+        <section class="section" id="education">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow reveal">03 — Education</span>
+                    <h2 class="h2 reveal" style="--d:80ms">Academic <em>background</em></h2>
+                    <p class="reveal" style="--d:140ms">My academic journey and relevant coursework.</p>
+                </div>
+
+                <div class="timeline">
+                    <article class="t-row reveal">
+                        <div class="t-date">Aug 2025 — May 2029</div>
+                        <div>
+                            <h3 class="t-title">Bachelor of Science in Computer Science</h3>
+                            <div class="t-org">New Jersey Institute of Technology · Newark, NJ</div>
+                            <ul class="t-list">
+                                <li>Pursuing a B.S. in Computer Science with a strong focus on software development, data analysis, and modern web technologies.</li>
+                                <li>Actively engaged in research, web development, and design projects spanning multiple domains.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="t-row reveal">
+                        <div class="t-date">2023 — 2025</div>
+                        <div>
+                            <h3 class="t-title">Higher Secondary Education — PCM Curriculum</h3>
+                            <div class="t-org">Delhi Public School Nacharam · Hyderabad, India</div>
+                            <ul class="t-list">
+                                <li>Completed higher secondary education under the PCM (Physics, Chemistry, Mathematics) curriculum, establishing a strong analytical and quantitative foundation.</li>
+                                <li>Developed strong problem-solving and logical reasoning skills through rigorous coursework in mathematics and the sciences.</li>
+                                <li>Engaged in self-directed programming and extracurricular activities that cultivated a sustained interest in computer science.</li>
+                            </ul>
+                            <div class="t-extra">
+                                <span class="t-label">Relevant coursework</span>
+                                <div class="chips">
+                                    <span class="chip">Informatics Practices</span>
+                                    <span class="chip">Python Basics</span>
+                                    <span class="chip">MySQL Fundamentals</span>
+                                    <span class="chip">Data Handling</span>
+                                </div>
+                                <p>Informatics Practices introduced me to the fundamentals of computer science, including basic Python programming and MySQL database management — my first formal exposure to writing code, working with data structures, and querying relational databases.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+        <section class="section" id="projects">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow reveal">04 — Projects</span>
+                    <h2 class="h2 reveal" style="--d:80ms">Selected <em>work</em></h2>
+                    <p class="reveal" style="--d:140ms">A selection of academic and personal projects.</p>
+                </div>
+
+                <div class="projects">
+                    <article class="card reveal">
+                        <div class="card-top">
+                            <span class="card-num">01</span>
+                            <span class="card-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg></span>
+                        </div>
+                        <h3>Distributed Rate Limiter &amp; Job Queue</h3>
+                        <p>Horizontally scalable rate-limiting service in Go with Token Bucket and Sliding Window algorithms via atomic Redis Lua scripts, eliminating race conditions across instances. Redis-backed async job queue with a concurrent worker pool, exponential backoff with jitter, and dead-letter handling. Load-tested at ~22,700 req/s with p99 under 25ms; one-command deploy with Docker Compose.</p>
+                        <div class="chips"><span class="chip">Go</span><span class="chip">Redis</span><span class="chip">Lua</span><span class="chip">Docker Compose</span></div>
+                        <div class="card-links"><a class="stretch" href="https://github.com/suhaanrajani123/ratelimiter-queue" target="_blank" rel="noopener">View source</a></div>
+                    </article>
+
+                    <article class="card reveal" style="--d:90ms">
+                        <div class="card-top">
+                            <span class="card-num">02</span>
+                            <span class="card-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg></span>
+                        </div>
+                        <h3>TradePath — Stock Market Simulator</h3>
+                        <p>Full-stack stock market simulator with live and historical prices via yfinance and real-time portfolio valuation. Market and limit orders with P/L recalculated on every price update, avoiding stale-state bugs common in polling designs. A normalization layer handles yfinance rate limits and malformed fields.</p>
+                        <div class="chips"><span class="chip">JavaScript</span><span class="chip">yfinance</span><span class="chip">Recharts</span><span class="chip">Vercel</span></div>
+                        <div class="card-links"><a class="stretch" href="https://trading-game-coral.vercel.app/" target="_blank" rel="noopener">Live demo</a></div>
+                    </article>
+
+                    <article class="card reveal" style="--d:180ms">
+                        <div class="card-top">
+                            <span class="card-num">03</span>
+                            <span class="card-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg></span>
+                        </div>
+                        <h3>Expense Tracker</h3>
+                        <p>Python tool to track personal finances and manage monthly budgets, with visual budget-vs-actual comparisons. Uses Pandas for data aggregation and predictive budgeting logic to forecast end-of-month expenses.</p>
+                        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span></div>
+                        <div class="card-links"><a class="stretch" href="https://github.com/suhaanrajani123/Expense-tracker" target="_blank" rel="noopener">View source</a></div>
+                    </article>
+
+                    <article class="card reveal">
+                        <div class="card-top">
+                            <span class="card-num">04</span>
+                            <span class="card-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg></span>
+                        </div>
+                        <h3>Urban Garden Hostel Website</h3>
+                        <p>Production website for a live hospitality client, improving mobile load performance and organizing content across service pages. Reusable UI components let staff update content without touching code.</p>
+                        <div class="chips"><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span></div>
+                        <div class="card-links"><a class="stretch" href="https://www.urbangardenhostel.com/" target="_blank" rel="noopener">Live site</a></div>
+                    </article>
+
+                    <article class="card reveal" style="--d:90ms">
+                        <div class="card-top">
+                            <span class="card-num">05</span>
+                        </div>
+                        <h3>SuperMarket Billing Software</h3>
+                        <p>Retail billing system integrating SQL database management, transaction processing, and inventory tracking, with database indexing to optimize query performance.</p>
+                        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">SQL</span></div>
+                        <div class="card-links"><span class="muted">Source available on request</span></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SKILLS ================= -->
+        <section class="section" id="skills">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow reveal">05 — Skills</span>
+                    <h2 class="h2 reveal" style="--d:80ms">Technical <em>toolkit</em></h2>
+                    <p class="reveal" style="--d:140ms">Programming languages, frameworks, and tools I have worked with.</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-row reveal">
+                        <h3>Languages</h3>
+                        <div class="chips"><span class="chip">Go</span><span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">Java</span><span class="chip">C/C++</span><span class="chip">HTML/CSS</span></div>
+                    </div>
+                    <div class="skill-row reveal">
+                        <h3>Frameworks</h3>
+                        <div class="chips"><span class="chip">Flask</span><span class="chip">FastAPI</span><span class="chip">Django</span><span class="chip">Node.js</span><span class="chip">Next.js</span><span class="chip">Tailwind CSS</span><span class="chip">Material-UI</span></div>
+                    </div>
+                    <div class="skill-row reveal">
+                        <h3>Developer Tools</h3>
+                        <div class="chips"><span class="chip">Docker</span><span class="chip">Redis</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Supabase</span><span class="chip">Vercel</span><span class="chip">Render</span><span class="chip">Stripe</span><span class="chip">VS Code</span><span class="chip">Figma</span></div>
+                    </div>
+                    <div class="skill-row reveal">
+                        <h3>Libraries</h3>
+                        <div class="chips"><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span><span class="chip">PyTorch</span></div>
+                    </div>
+                    <div class="skill-row reveal">
+                        <h3>Concepts</h3>
+                        <div class="chips"><span class="chip">Distributed Systems</span><span class="chip">REST API Design</span><span class="chip">JWT</span><span class="chip">OAuth</span><span class="chip">RAG / Agentic AI</span><span class="chip">Generative AI Fine-Tuning</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="contact" id="contact">
+            <div class="wrap">
+                <span class="eyebrow reveal">06 — Contact</span>
+                <h2 class="display reveal" style="--d:80ms; margin-top:24px">Let's <em>talk.</em></h2>
+                <p class="lead reveal" style="--d:140ms">I welcome the opportunity to discuss professional collaborations, research interests, or potential opportunities. Feel free to reach out through any of the channels below.</p>
+                <a class="mail-link reveal" style="--d:200ms" href="mailto:suhaanrajani276@gmail.com">suhaanrajani276@gmail.com</a>
+                <div class="contact-actions reveal" style="--d:260ms">
+                    <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                        View resume
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7" /><path d="M7 7h10v10" /></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+                    <a href="https://github.com/suhaanrajani123" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+                </div>
+                <div class="contact-meta reveal" style="--d:320ms">
+                    <a href="tel:7064901201">(706) 490-1201</a>
+                    <a href="https://www.linkedin.com/in/suhaan-rajani" target="_blank" rel="noopener">linkedin.com/in/suhaan-rajani</a>
+                    <a href="https://github.com/suhaanrajani123" target="_blank" rel="noopener">github.com/suhaanrajani123</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <span>Designed &amp; built by Suhaan Rajani · © <span id="year">2026</span></span>
+            <a href="#home" class="to-top">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <!-- Smooth (inertial) scrolling -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script>
+        (function () {
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var root = document.documentElement;
+
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            /* ---- Smooth scroll (falls back to native if Lenis didn't load) ---- */
+            var lenis = null;
+            if (!reduce && window.Lenis) {
+                lenis = new Lenis({ duration: 1.15, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true });
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            } else if (!reduce) {
+                root.style.scrollBehavior = 'smooth';
+            }
+
+            /* ---- Anchor links ---- */
+            var menu = document.getElementById('mobileMenu');
+            var menuBtn = document.getElementById('menuBtn');
+            document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    var id = a.getAttribute('href');
+                    var target = id === '#home' ? document.body : document.querySelector(id);
+                    if (!target) return;
+                    e.preventDefault();
+                    menu.classList.remove('open');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    if (lenis) lenis.scrollTo(id === '#home' ? 0 : target, { offset: -40 });
+                    else window.scrollTo({ top: id === '#home' ? 0 : target.getBoundingClientRect().top + window.scrollY - 40 });
+                });
+            });
+
+            menuBtn.addEventListener('click', function () {
+                var open = menu.classList.toggle('open');
+                menuBtn.setAttribute('aria-expanded', String(open));
+            });
+
+            /* ---- Hero intro ---- */
+            requestAnimationFrame(function () { document.body.classList.add('loaded'); });
+
+            /* ---- Reveal on scroll ---- */
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+            document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+            /* ---- Active nav link ---- */
+            var links = document.querySelectorAll('.nav-links a');
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    links.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); });
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+            document.querySelectorAll('section[id]').forEach(function (s) { spy.observe(s); });
+
+            /* ---- Scroll-driven bits: progress bar, nav hide/show, photo parallax ---- */
+            var nav = document.getElementById('nav');
+            var bar = document.querySelector('.progress');
+            var img = document.getElementById('portraitImg');
+            var lastY = 0, ticking = false;
+
+            function onScroll() {
+                var y = window.scrollY;
+                var max = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+
+                if (y > 200 && y > lastY + 4 && !menu.classList.contains('open')) nav.classList.add('hidden');
+                else if (y < lastY - 4 || y <= 200) nav.classList.remove('hidden');
+                lastY = y;
+
+                if (!reduce && y < window.innerHeight * 1.2) img.style.transform = 'translate3d(0,' + (-y * 0.06) + 'px,0)';
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+            }, { passive: true });
+            onScroll();
+        })();
     </script>
 </body>
 
